@@ -74,12 +74,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="civilstats.Designer.vb">
-      <DependentUpon>civilstats.vb</DependentUpon>
-    </Compile>
-    <Compile Include="civilstats.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="dashboard.Designer.vb">
       <DependentUpon>dashboard.vb</DependentUpon>
     </Compile>
@@ -115,24 +109,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="occupationstats.Designer.vb">
-      <DependentUpon>occupationstats.vb</DependentUpon>
-    </Compile>
-    <Compile Include="occupationstats.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="overview.Designer.vb">
-      <DependentUpon>overview.vb</DependentUpon>
-    </Compile>
-    <Compile Include="overview.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="purokstats.Designer.vb">
-      <DependentUpon>purokstats.vb</DependentUpon>
-    </Compile>
-    <Compile Include="purokstats.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="registry.Designer.vb">
       <DependentUpon>registry.vb</DependentUpon>
     </Compile>
@@ -159,9 +135,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="civilstats.resx">
-      <DependentUpon>civilstats.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.vb</DependentUpon>
     </EmbeddedResource>
@@ -176,15 +149,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="occupationstats.resx">
-      <DependentUpon>occupationstats.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="overview.resx">
-      <DependentUpon>overview.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="purokstats.resx">
-      <DependentUpon>purokstats.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="registry.resx">
       <DependentUpon>registry.vb</DependentUpon>

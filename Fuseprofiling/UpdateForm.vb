@@ -23,7 +23,7 @@ Public Class UpdateForm
     Private _contact As String
 
     Sub returndefault()
-        ' Set the textbox values using the received data from resident datagridview
+        ' asign the textbox values using the received data from resident datagridview
         surnamebox.Text = _surname
         firstbox.Text = _firstname
         middlebox.Text = _middlename
@@ -160,7 +160,6 @@ Public Class UpdateForm
             e.Handled = True
         End If
     End Sub
-
     Private Sub contactbox_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles contactbox.Validating
         'contact number must contain 11 digits
         If contactbox.Text.Length <> 11 Then
@@ -209,5 +208,4 @@ Public Class UpdateForm
         ' Set the textbox values using the received data from resident datagridview
         returndefault()
     End Sub
-
 End Class

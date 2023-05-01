@@ -1,11 +1,6 @@
 ﻿Imports System.Data.OleDb
 
 Public Class viewform
-    Private Sub back_Click(sender As Object, e As EventArgs)
-        residents.Show()
-        Me.Hide()
-    End Sub
-
     Public Sub UpdateDataGridView(buttonClicked As String)
         'connection to db
         Dim conn As OleDbConnection = DatabaseConnection.GetConnection()
@@ -78,7 +73,7 @@ Public Class viewform
             'Separated
             adapter = New OleDbDataAdapter("SELECT * FROM infostb WHERE CIVILSTATUS = 'Separated'", conn)
 
-        ElseIf buttonClicked = "Single" Then
+        ElseIf buttonClicked = "Widowed" Then
             'Widowed
             adapter = New OleDbDataAdapter("SELECT * FROM infostb WHERE CIVILSTATUS = 'Widowed'", conn)
 

@@ -81,13 +81,16 @@ Public Class registry
         'hide ID column
         householdmember.Columns(0).Visible = False
     End Sub
+
     'Sub for clearing text fields
     Sub clearText()
         surnamebox.Text = ""
         firstbox.Text = ""
         middlebox.Text = ""
         suffixbox.SelectedIndex = -1
+        householdbox.Text = ""
         purokbox.SelectedIndex = -1
+        birthdatepicker.Value = DateTime.Now.Date
         sexbox.SelectedIndex = -1
         occupationstatusbox.SelectedIndex = -1
         civilstatusbox.SelectedIndex = -1

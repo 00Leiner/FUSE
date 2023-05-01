@@ -71,8 +71,8 @@ Public Class residents
         household = personalinfo.Rows(e.RowIndex).Cells(8).Value.ToString
         purok = personalinfo.Rows(e.RowIndex).Cells(9).Value.ToString
         birthdate = personalinfo.Rows(e.RowIndex).Cells(10).Value.ToString
-        OCCUPATIONSTATUS = personalinfo.Rows(e.RowIndex).Cells(11).Value.ToString
-        contact = personalinfo.Rows(e.RowIndex).Cells(12).Value.ToString
+        contact = personalinfo.Rows(e.RowIndex).Cells(11).Value.ToString
+        OCCUPATIONSTATUS = personalinfo.Rows(e.RowIndex).Cells(12).Value.ToString
     End Sub
 
     Private Sub deletebtn_Click(sender As Object, e As EventArgs) Handles deletebtn.Click
@@ -81,26 +81,28 @@ Public Class residents
             MessageBox.Show("Please select a cell to Delete.")
             Return
         Else
-            'delete comand
-            comm = New OleDbCommand("DELETE FROM infostb WHERE ID = @ID", conn)
-            comm.Parameters.AddWithValue("@ID", ID)
+            ' Ask user to confirm deletion
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to permanently delete this data? ", "Confirmation", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                'delete command
+                comm = New OleDbCommand("DELETE FROM infostb WHERE ID = @ID", conn)
+                comm.Parameters.AddWithValue("@ID", ID)
 
-            'execute
-            Dim rowsAffected As Integer = comm.ExecuteNonQuery()
+                'execute
+                Dim rowsAffected As Integer = comm.ExecuteNonQuery()
 
-            If rowsAffected > 0 Then
-                MessageBox.Show("Record deleted successfully.")
-            Else
-                MessageBox.Show("Failed to delete record.")
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Record deleted successfully.")
+                Else
+                    MessageBox.Show("Failed to delete record.")
+                End If
+
+                'show updated data in datagridview
+                Dim table As New DataTable()
+                adapter.Fill(table)
+                personalinfo.DataSource = table
             End If
-
-            'show updated data in datagridview
-            Dim table As New DataTable()
-            adapter.Fill(table)
-            personalinfo.DataSource = table
-
         End If
-
     End Sub
 
     Private Sub updatebtn_Click(sender As Object, e As EventArgs) Handles updatebtn.Click
@@ -120,7 +122,6 @@ Public Class residents
     Private Sub viewall_Click(sender As Object, e As EventArgs) Handles viewall.Click
         viewform.UpdateDataGridView("All")
         viewform.ShowDialog()
-        Me.Hide()
     End Sub
 
 End Class
