@@ -236,5 +236,4 @@ Public Class registry
         'SEARCH
         SEARCHING()
     End Sub
-
 End Class

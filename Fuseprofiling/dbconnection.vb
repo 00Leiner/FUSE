@@ -1,7 +1,8 @@
 ﻿Imports System.Data.OleDb
 
 Module dbconnection
-    'if the provider is not register on local machine try to chage the provide into Microsoft.ACE.OLEDB.12.0 or Microsoft.Jet.OLEDB.4.0
+
+    'if The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. try to download Microsoft Access Database Engine 2010 Redistributable here: https://www.microsoft.com/en-us/download/details.aspx?id=13255 
     Public Class DatabaseConnection
         Public Shared Function GetConnection() As OleDbConnection
             ' database connection and setting up
