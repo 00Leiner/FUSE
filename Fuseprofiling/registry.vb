@@ -95,9 +95,13 @@ Public Class registry
             Return
         End If
         If Not contactbox.Text.StartsWith("09") Then
-            MessageBox.Show("Please fill the Contact No.")
+            MessageBox.Show("Incorrect Contact Number Format")
             Return
         End If
+        If contactbox.Text.Length <> 11 Then
+            MessageBox.Show("Incorrect Contact Number Format")
+        End If
+
         'declare variables
         Dim SURNAME As String = surnamebox.Text
         Dim FIRSTNAME As String = firstbox.Text
