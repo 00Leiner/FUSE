@@ -52,6 +52,9 @@ Partial Class UpdateForm
         Me.OCCUPATIONSTATUSVIEW = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CIVILSTATUSVIEW = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CONTACTVIEW = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -77,13 +80,15 @@ Partial Class UpdateForm
         Me.middlebox = New System.Windows.Forms.TextBox()
         Me.firstbox = New System.Windows.Forms.TextBox()
         Me.surnamebox = New System.Windows.Forms.TextBox()
-        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.householdmember, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -220,9 +225,12 @@ Partial Class UpdateForm
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.AntiqueWhite
+        Me.Panel1.Controls.Add(Me.Label5)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Controls.Add(Me.PictureBox3)
+        Me.Panel1.Controls.Add(Me.PictureBox4)
         Me.Panel1.Controls.Add(Me.Panel5)
         Me.Panel1.Controls.Add(Me.Panel4)
-        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Location = New System.Drawing.Point(245, 95)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(857, 581)
@@ -362,6 +370,38 @@ Partial Class UpdateForm
         Me.CONTACTVIEW.Name = "CONTACTVIEW"
         Me.CONTACTVIEW.ReadOnly = True
         '
+        'Panel7
+        '
+        Me.Panel7.BackColor = System.Drawing.Color.Tan
+        Me.Panel7.Location = New System.Drawing.Point(12, 419)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(12, 59)
+        Me.Panel7.TabIndex = 14
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox4.BackgroundImage = CType(resources.GetObject("PictureBox4.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox4.Location = New System.Drawing.Point(0, -180)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(379, 425)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 70
+        Me.PictureBox4.TabStop = False
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox3.Location = New System.Drawing.Point(477, -180)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(380, 425)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox3.TabIndex = 71
+        Me.PictureBox3.TabStop = False
+        '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -392,7 +432,7 @@ Partial Class UpdateForm
         Me.Panel3.Location = New System.Drawing.Point(17, 63)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(820, 226)
-        Me.Panel3.TabIndex = 67
+        Me.Panel3.TabIndex = 79
         '
         'Label3
         '
@@ -639,13 +679,15 @@ Partial Class UpdateForm
         Me.surnamebox.Size = New System.Drawing.Size(214, 29)
         Me.surnamebox.TabIndex = 31
         '
-        'Panel7
+        'Label5
         '
-        Me.Panel7.BackColor = System.Drawing.Color.Tan
-        Me.Panel7.Location = New System.Drawing.Point(12, 419)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(12, 59)
-        Me.Panel7.TabIndex = 14
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(385, 19)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(87, 23)
+        Me.Label5.TabIndex = 80
+        Me.Label5.Text = "UPDATE"
         '
         'UpdateForm
         '
@@ -672,10 +714,13 @@ Partial Class UpdateForm
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         CType(Me.householdmember, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
@@ -693,11 +738,6 @@ Partial Class UpdateForm
     Friend WithEvents Panel2 As Panel
     Friend WithEvents demographicsbtn As Button
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents civilstatusbox As ComboBox
-    Friend WithEvents sexbox As ComboBox
-    Friend WithEvents purokbox As ComboBox
-    Friend WithEvents suffixbox As ComboBox
-    Friend WithEvents occupationstatusbox As ComboBox
     Friend WithEvents householdmember As DataGridView
     Friend WithEvents SURNAMEVIEW As DataGridViewTextBoxColumn
     Friend WithEvents FIRSTNAMEVIEW As DataGridViewTextBoxColumn
@@ -713,6 +753,30 @@ Partial Class UpdateForm
     Friend WithEvents CONTACTVIEW As DataGridViewTextBoxColumn
     Friend WithEvents updatebtn As Button
     Friend WithEvents undo As Button
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents civilstatusbox As ComboBox
+    Friend WithEvents sexbox As ComboBox
+    Friend WithEvents purokbox As ComboBox
+    Friend WithEvents suffixbox As ComboBox
+    Friend WithEvents occupationstatusbox As ComboBox
     Friend WithEvents birthdatepicker As DateTimePicker
     Friend WithEvents contactbox As TextBox
     Friend WithEvents householdbox As TextBox
@@ -720,21 +784,5 @@ Partial Class UpdateForm
     Friend WithEvents middlebox As TextBox
     Friend WithEvents firstbox As TextBox
     Friend WithEvents surnamebox As TextBox
-    Friend WithEvents Panel5 As Panel
-    Friend WithEvents Panel4 As Panel
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Panel7 As Panel
+    Friend WithEvents Label5 As Label
 End Class

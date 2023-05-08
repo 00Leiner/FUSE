@@ -78,6 +78,9 @@ Partial Class demographics
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Chart2 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.civilstatuspanel = New System.Windows.Forms.Panel()
+        Me.widowedpanel = New System.Windows.Forms.Panel()
+        Me.widowedcount = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.separatedpanel = New System.Windows.Forms.Panel()
@@ -95,9 +98,6 @@ Partial Class demographics
         Me.Label16 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Chart3 = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        Me.widowedpanel = New System.Windows.Forms.Panel()
-        Me.widowedcount = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.occupationalstatspanel = New System.Windows.Forms.Panel()
         Me.studentpanel = New System.Windows.Forms.Panel()
         Me.studentcount = New System.Windows.Forms.Label()
@@ -175,6 +175,7 @@ Partial Class demographics
         Me.purok5panel.SuspendLayout()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.civilstatuspanel.SuspendLayout()
+        Me.widowedpanel.SuspendLayout()
         Me.separatedpanel.SuspendLayout()
         Me.marreidpanel.SuspendLayout()
         Me.divorcedpanel.SuspendLayout()
@@ -182,7 +183,6 @@ Partial Class demographics
         Me.singlepanel.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.widowedpanel.SuspendLayout()
         Me.occupationalstatspanel.SuspendLayout()
         Me.studentpanel.SuspendLayout()
         Me.unemployedpanel.SuspendLayout()
@@ -769,6 +769,7 @@ Partial Class demographics
         '
         Me.civilstatuspanel.BackColor = System.Drawing.Color.AntiqueWhite
         Me.civilstatuspanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.civilstatuspanel.Controls.Add(Me.widowedpanel)
         Me.civilstatuspanel.Controls.Add(Me.Label26)
         Me.civilstatuspanel.Controls.Add(Me.Label25)
         Me.civilstatuspanel.Controls.Add(Me.separatedpanel)
@@ -778,11 +779,45 @@ Partial Class demographics
         Me.civilstatuspanel.Controls.Add(Me.singlepanel)
         Me.civilstatuspanel.Controls.Add(Me.PictureBox1)
         Me.civilstatuspanel.Controls.Add(Me.Chart3)
-        Me.civilstatuspanel.Controls.Add(Me.widowedpanel)
         Me.civilstatuspanel.Location = New System.Drawing.Point(245, 95)
         Me.civilstatuspanel.Name = "civilstatuspanel"
         Me.civilstatuspanel.Size = New System.Drawing.Size(857, 581)
         Me.civilstatuspanel.TabIndex = 37
+        '
+        'widowedpanel
+        '
+        Me.widowedpanel.BackColor = System.Drawing.Color.Transparent
+        Me.widowedpanel.BackgroundImage = CType(resources.GetObject("widowedpanel.BackgroundImage"), System.Drawing.Image)
+        Me.widowedpanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.widowedpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.widowedpanel.Controls.Add(Me.widowedcount)
+        Me.widowedpanel.Controls.Add(Me.Label13)
+        Me.widowedpanel.Location = New System.Drawing.Point(78, 367)
+        Me.widowedpanel.Name = "widowedpanel"
+        Me.widowedpanel.Size = New System.Drawing.Size(301, 124)
+        Me.widowedpanel.TabIndex = 56
+        '
+        'widowedcount
+        '
+        Me.widowedcount.AutoSize = True
+        Me.widowedcount.Font = New System.Drawing.Font("Tahoma", 26.0!)
+        Me.widowedcount.ForeColor = System.Drawing.Color.White
+        Me.widowedcount.Location = New System.Drawing.Point(204, 54)
+        Me.widowedcount.Name = "widowedcount"
+        Me.widowedcount.Size = New System.Drawing.Size(37, 42)
+        Me.widowedcount.TabIndex = 1
+        Me.widowedcount.Text = "_"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Tahoma", 14.0!)
+        Me.Label13.ForeColor = System.Drawing.Color.White
+        Me.Label13.Location = New System.Drawing.Point(31, 37)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(87, 23)
+        Me.Label13.TabIndex = 0
+        Me.Label13.Text = "Widowed"
         '
         'Label26
         '
@@ -991,41 +1026,6 @@ Partial Class demographics
         Me.Chart3.Size = New System.Drawing.Size(456, 212)
         Me.Chart3.TabIndex = 35
         Me.Chart3.Text = "Chart3"
-        '
-        'widowedpanel
-        '
-        Me.widowedpanel.BackColor = System.Drawing.Color.Transparent
-        Me.widowedpanel.BackgroundImage = CType(resources.GetObject("widowedpanel.BackgroundImage"), System.Drawing.Image)
-        Me.widowedpanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.widowedpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.widowedpanel.Controls.Add(Me.widowedcount)
-        Me.widowedpanel.Controls.Add(Me.Label13)
-        Me.widowedpanel.Location = New System.Drawing.Point(78, 366)
-        Me.widowedpanel.Name = "widowedpanel"
-        Me.widowedpanel.Size = New System.Drawing.Size(301, 124)
-        Me.widowedpanel.TabIndex = 27
-        '
-        'widowedcount
-        '
-        Me.widowedcount.AutoSize = True
-        Me.widowedcount.Font = New System.Drawing.Font("Tahoma", 26.0!)
-        Me.widowedcount.ForeColor = System.Drawing.Color.White
-        Me.widowedcount.Location = New System.Drawing.Point(204, 54)
-        Me.widowedcount.Name = "widowedcount"
-        Me.widowedcount.Size = New System.Drawing.Size(37, 42)
-        Me.widowedcount.TabIndex = 1
-        Me.widowedcount.Text = "_"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Tahoma", 14.0!)
-        Me.Label13.ForeColor = System.Drawing.Color.White
-        Me.Label13.Location = New System.Drawing.Point(31, 37)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(87, 23)
-        Me.Label13.TabIndex = 0
-        Me.Label13.Text = "Widowed"
         '
         'occupationalstatspanel
         '
@@ -1792,6 +1792,8 @@ Partial Class demographics
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.civilstatuspanel.ResumeLayout(False)
         Me.civilstatuspanel.PerformLayout()
+        Me.widowedpanel.ResumeLayout(False)
+        Me.widowedpanel.PerformLayout()
         Me.separatedpanel.ResumeLayout(False)
         Me.separatedpanel.PerformLayout()
         Me.marreidpanel.ResumeLayout(False)
@@ -1803,8 +1805,6 @@ Partial Class demographics
         Me.singlepanel.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.widowedpanel.ResumeLayout(False)
-        Me.widowedpanel.PerformLayout()
         Me.occupationalstatspanel.ResumeLayout(False)
         Me.occupationalstatspanel.PerformLayout()
         Me.studentpanel.ResumeLayout(False)
@@ -1857,9 +1857,6 @@ Partial Class demographics
     Friend WithEvents Chart2 As DataVisualization.Charting.Chart
     Friend WithEvents civilstatuspanel As Panel
     Friend WithEvents Chart3 As DataVisualization.Charting.Chart
-    Friend WithEvents widowedpanel As Panel
-    Friend WithEvents widowedcount As Label
-    Friend WithEvents Label13 As Label
     Friend WithEvents occupationalstatspanel As Panel
     Friend WithEvents overviewpanel As Panel
     Friend WithEvents Label22 As Label
@@ -1965,4 +1962,7 @@ Partial Class demographics
     Friend WithEvents activemaritalstatus As Panel
     Friend WithEvents activeoccupational As Panel
     Friend WithEvents activeoverview As Panel
+    Friend WithEvents widowedpanel As Panel
+    Friend WithEvents widowedcount As Label
+    Friend WithEvents Label13 As Label
 End Class

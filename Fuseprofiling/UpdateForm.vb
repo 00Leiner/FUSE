@@ -112,11 +112,11 @@ Public Class UpdateForm
             Return
         End If
         If Not contactbox.Text.StartsWith("09") Then
-            MessageBox.Show("Incorrect Contact Number Format")
+            MessageBox.Show("Invalid Phone Number")
             Return
         End If
         If contactbox.Text.Length <> 11 Then
-            MessageBox.Show("Incorrect Contact Number Format")
+            MessageBox.Show("Invalid Phone Number")
         End If
 
         comm = New OleDbCommand

@@ -379,11 +379,6 @@ Public Class demographics
         viewform.UpdateDataGridView("Student")
         viewform.ShowDialog()
     End Sub
-
-
-
-
-
     'overview----------------------------------------------------------------------------------------------------------------------------
     '
     '
