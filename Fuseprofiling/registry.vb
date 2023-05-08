@@ -8,55 +8,29 @@ Public Class registry
     Dim adapter As OleDbDataAdapter = New OleDbDataAdapter("SELECT * FROM infostb", conn)
 
 
-    'showing their household memeber in datagridview
-    Sub SEARCHING()
-        'searchvalue variable 
-        Dim searchValue As String = householdbox.Text
-        'selecting colums
-        Dim query As String = "SELECT * FROM infostb WHERE HOUSEHOLD LIKE '%" & searchValue & "%'"
-        'use db
-        Using command As New OleDbCommand(query, conn)
-            'adapting query
-            adapter = New OleDbDataAdapter(command)
-            Dim table As New DataTable()
-            'showing data in datagridview
-            adapter.Fill(table)
-            If table.Rows.Count > 0 Then
-                householdmember.DataSource = table
-                'to hide the default column in datagridview
-                householdmember.Columns(0).Visible = False
-                householdmember.Columns(1).Visible = False
-                householdmember.Columns(2).Visible = False
-                householdmember.Columns(3).Visible = False
-                householdmember.Columns(4).Visible = False
-                householdmember.Columns(5).Visible = False
-                householdmember.Columns(6).Visible = False
-                householdmember.Columns(7).Visible = False
-                householdmember.Columns(8).Visible = False
-                householdmember.Columns(9).Visible = False
-                householdmember.Columns(10).Visible = False
-                householdmember.Columns(11).Visible = False
-                householdmember.Columns(12).Visible = False
-            Else
-                householdmember.DataSource = Nothing ' Clear the datasource if no data found
+    Sub columnvisible(tof)
 
-                'to show the default column in datagridview
-                householdmember.Columns(0).Visible = True
-                householdmember.Columns(1).Visible = True
-                householdmember.Columns(2).Visible = True
-                householdmember.Columns(3).Visible = True
-                householdmember.Columns(4).Visible = True
-                householdmember.Columns(5).Visible = True
-                householdmember.Columns(6).Visible = True
-                householdmember.Columns(7).Visible = True
-                householdmember.Columns(8).Visible = True
-                householdmember.Columns(9).Visible = True
-                householdmember.Columns(10).Visible = True
-                householdmember.Columns(11).Visible = True
-            End If
-        End Using
+        'to hide the column in datagridview
+
+        Dim visibleToF As Boolean = tof
+
+        householdmember.Columns(0).Visible = visibleToF
+        householdmember.Columns(1).Visible = visibleToF
+        householdmember.Columns(2).Visible = visibleToF
+        householdmember.Columns(3).Visible = visibleToF
+        householdmember.Columns(4).Visible = visibleToF
+        householdmember.Columns(5).Visible = visibleToF
+        householdmember.Columns(6).Visible = visibleToF
+        householdmember.Columns(7).Visible = visibleToF
+        householdmember.Columns(8).Visible = visibleToF
+        householdmember.Columns(9).Visible = visibleToF
+        householdmember.Columns(10).Visible = visibleToF
+        householdmember.Columns(11).Visible = visibleToF
     End Sub
     Private Sub residents_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        'clear the inputed text 
+        clearText()
+
         'showing data in datagridview
         Dim table As New DataTable()
         adapter = New OleDbDataAdapter("SELECT * FROM infostb ORDER BY SURNAME ASC", conn)
@@ -64,18 +38,8 @@ Public Class registry
         householdmember.DataSource = table
 
         'to hide the default column in datagridview
-        householdmember.Columns(0).Visible = False
-        householdmember.Columns(1).Visible = False
-        householdmember.Columns(2).Visible = False
-        householdmember.Columns(3).Visible = False
-        householdmember.Columns(4).Visible = False
-        householdmember.Columns(5).Visible = False
-        householdmember.Columns(6).Visible = False
-        householdmember.Columns(7).Visible = False
-        householdmember.Columns(8).Visible = False
-        householdmember.Columns(9).Visible = False
-        householdmember.Columns(10).Visible = False
-        householdmember.Columns(11).Visible = False
+        columnvisible(False)
+        'add one column to hide because in datagridview collection dont have an ID  column 
         householdmember.Columns(12).Visible = False
 
         'hide ID column
@@ -102,7 +66,6 @@ Public Class registry
             MessageBox.Show("Please fill the First Name.")
             Return
         End If
-
         If String.IsNullOrEmpty(surnamebox.Text) Then
             MessageBox.Show("Please fill the Last Name")
             Return
@@ -111,12 +74,10 @@ Public Class registry
             MessageBox.Show("Please fill the Middle Name.")
             Return
         End If
-
         If String.IsNullOrEmpty(householdbox.Text) Then
             MessageBox.Show("Please fill the Household ID.")
             Return
         End If
-
         If String.IsNullOrEmpty(purokbox.Text) Then
             MessageBox.Show("Please fill the Purok.")
             Return
@@ -125,12 +86,15 @@ Public Class registry
             MessageBox.Show("Please fill the Civil Status.")
             Return
         End If
-
         If String.IsNullOrEmpty(sexbox.Text) Then
             MessageBox.Show("Please fill the Gender.")
             Return
         End If
         If String.IsNullOrEmpty(contactbox.Text) Then
+            MessageBox.Show("Please fill the Contact No.")
+            Return
+        End If
+        If Not contactbox.Text.StartsWith("09") Then
             MessageBox.Show("Please fill the Contact No.")
             Return
         End If
@@ -171,19 +135,17 @@ Public Class registry
                 cmdInsert.Parameters.AddWithValue("@CONTACT", CONTACT)
                 cmdInsert.ExecuteNonQuery()
 
-
-                'SEARCH
-                SEARCHING()
-
                 'message box if the insertion is successfully inserted
                 MessageBox.Show("RECORD INSERTED SUCCESSFULLY.", "INSERT", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                'clear the inputed text 
+                clearText()
+
             Catch ex As Exception
                 MessageBox.Show("Error: " & ex.Message)
 
             End Try
 
-            'clear the inputed text 
-            clearText()
         End Using
     End Sub
 
@@ -192,29 +154,38 @@ Public Class registry
         clearText()
     End Sub
 
-    Private Sub back_Click(sender As Object, e As EventArgs) Handles back.Click
-        'back to dashboard
-        dashboard.Show()
-        Me.Hide()
-    End Sub
-
     'condition in imputing data
     Private Sub surnamebox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles surnamebox.KeyPress
-        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+        ' Check if the pressed key is a space or a letter or the backspace key
+        If e.KeyChar = " " OrElse Char.IsLetter(e.KeyChar) OrElse e.KeyChar = ChrW(Keys.Back) Then
+            ' Allow spaces, letters, and backspace
+            e.Handled = False
+        Else
+            ' Block other characters
             e.Handled = True
         End If
     End Sub
     Private Sub firstbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles firstbox.KeyPress
-        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+        ' Check if the pressed key is a space or a letter or the backspace key
+        If e.KeyChar = " " OrElse Char.IsLetter(e.KeyChar) OrElse e.KeyChar = ChrW(Keys.Back) Then
+            ' Allow spaces, letters, and backspace
+            e.Handled = False
+        Else
+            ' Block other characters
             e.Handled = True
         End If
     End Sub
     Private Sub middlebox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles middlebox.KeyPress
-        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+        ' Check if the pressed key is a space or a letter or the backspace key
+        If e.KeyChar = " " OrElse Char.IsLetter(e.KeyChar) OrElse e.KeyChar = ChrW(Keys.Back) Then
+            ' Allow spaces, letters, and backspace
+            e.Handled = False
+        Else
+            ' Block other characters
             e.Handled = True
         End If
     End Sub
-    Private Sub householdbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles householdbox.KeyPress
+    Private Sub householdbox_KeyPress(sender As Object, e As KeyPressEventArgs)
         If Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = ControlChars.Back Then
             e.Handled = True
         End If
@@ -223,17 +194,64 @@ Public Class registry
         If Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = ControlChars.Back Then
             e.Handled = True
         End If
-    End Sub
 
-    Private Sub contactbox_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles contactbox.Validating
-        If contactbox.Text.Length <> 11 Then
-            MessageBox.Show("Contact number must be 11 digits.")
-            e.Cancel = True
-        End If
     End Sub
 
     Private Sub householdbox_TextChanged(sender As Object, e As EventArgs) Handles householdbox.TextChanged
-        'SEARCH
-        SEARCHING()
+        'searchvalue variable 
+        Dim searchValue As String = householdbox.Text
+        'selecting colums
+        Dim query As String = "SELECT * FROM infostb WHERE HOUSEHOLD LIKE '%" & searchValue & "%'"
+        'use db
+        Using command As New OleDbCommand(query, conn)
+            'adapting query
+            adapter = New OleDbDataAdapter(command)
+            Dim table As New DataTable()
+            'showing data in datagridview
+            adapter.Fill(table)
+            If table.Rows.Count > 0 Then
+                householdmember.DataSource = table
+
+                'to hide the column in datagridview
+                columnvisible(False)
+                'add one column to hide because in datagridview collection dont have an ID  column 
+                householdmember.Columns(12).Visible = False
+            Else
+                householdmember.DataSource = Nothing ' Clear the datasource if no data found
+
+                'to show the column in datagridview
+                columnvisible(True)
+            End If
+        End Using
     End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Dim logout As DialogResult = MessageBox.Show("Are you sure you want to logout?", "logout", MessageBoxButtons.YesNo)
+        If logout = DialogResult.Yes Then
+            Me.Hide()
+            Form1.Show()
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        dashboard.Show()
+    End Sub
+
+    Private Sub residentsbtn_Click(sender As Object, e As EventArgs) Handles residentsbtn.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        residents.Show()
+    End Sub
+
+    Private Sub demographicsbtn_Click(sender As Object, e As EventArgs) Handles demographicsbtn.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        demographics.Show()
+    End Sub
+
 End Class

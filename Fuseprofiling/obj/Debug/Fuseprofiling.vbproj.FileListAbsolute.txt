@@ -36,3 +36,5 @@ C:\Users\LEINER\source\repos\Fuseprofiling - Copy\Fuseprofiling\obj\Debug\Fusepr
 C:\Users\LEINER\source\repos\Fuseprofiling - Copy\Fuseprofiling\obj\Debug\Fuseprofiling.exe
 C:\Users\LEINER\source\repos\Fuseprofiling - Copy\Fuseprofiling\obj\Debug\Fuseprofiling.xml
 C:\Users\LEINER\source\repos\Fuseprofiling - Copy\Fuseprofiling\obj\Debug\Fuseprofiling.pdb
+C:\Users\LEINER\source\repos\Fuseprofiling\Fuseprofiling\obj\Debug\Fuseprofiling.household.resources
+C:\Users\LEINER\source\repos\Fuseprofiling\Fuseprofiling\obj\Debug\Fuseprofiling.viewhouseholdmember.resources

@@ -6,58 +6,108 @@ Public Class demographics
     'db connection
     Dim conn As OleDbConnection = DatabaseConnection.GetConnection()
 
-    Private Sub demographics_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub demographics_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        'SHOW AND HIDE PANELL
         demographicsinfo.Visible = True
         purokstats.Visible = False
         civilstatuspanel.Visible = False
         occupationalstatspanel.Visible = False
         overviewpanel.Visible = False
+
+        'SHOW ACTIVATION 
+        activedemographic.Visible = True
+        activepurok.Visible = False
+        activemaritalstatus.Visible = False
+        activeoccupational.Visible = False
+        activeoverview.Visible = False
     End Sub
 
-    Private Sub back_Click(sender As Object, e As EventArgs) Handles back.Click
+    Private Sub PictureBox10_Click(sender As Object, e As EventArgs) Handles PictureBox10.Click
+
+        Me.Hide()
         'back to dashboard
         dashboard.Show()
-        Me.Hide()
     End Sub
     'button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'SHOW AND HIDE PANELL
         demographicsinfo.Visible = True
         purokstats.Visible = False
         civilstatuspanel.Visible = False
         occupationalstatspanel.Visible = False
         overviewpanel.Visible = False
+
+        'SHOW ACTIVATION 
+        activedemographic.Visible = True
+        activepurok.Visible = False
+        activemaritalstatus.Visible = False
+        activeoccupational.Visible = False
+        activeoverview.Visible = False
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        'SHOW AND HIDE PANELL
         demographicsinfo.Visible = False
         purokstats.Visible = True
         civilstatuspanel.Visible = False
         occupationalstatspanel.Visible = False
         overviewpanel.Visible = False
+
+        'SHOW ACTIVATION 
+        activedemographic.Visible = False
+        activepurok.Visible = True
+        activemaritalstatus.Visible = False
+        activeoccupational.Visible = False
+        activeoverview.Visible = False
     End Sub
 
     Private Sub civilstatsbtn_Click(sender As Object, e As EventArgs) Handles civilstatsbtn.Click
+        'SHOW AND HIDE PANELL
         demographicsinfo.Visible = False
         purokstats.Visible = False
         civilstatuspanel.Visible = True
         occupationalstatspanel.Visible = False
         overviewpanel.Visible = False
+
+        'SHOW ACTIVATION 
+        activedemographic.Visible = False
+        activepurok.Visible = False
+        activemaritalstatus.Visible = True
+        activeoccupational.Visible = False
+        activeoverview.Visible = False
     End Sub
 
     Private Sub occupationstatsbtn_Click(sender As Object, e As EventArgs) Handles occupationstatsbtn.Click
+        'SHOW AND HIDE PANELL
         demographicsinfo.Visible = False
         purokstats.Visible = False
         civilstatuspanel.Visible = False
         occupationalstatspanel.Visible = True
         overviewpanel.Visible = False
+
+        'SHOW ACTIVATION 
+        activedemographic.Visible = False
+        activepurok.Visible = False
+        activemaritalstatus.Visible = False
+        activeoccupational.Visible = True
+        activeoverview.Visible = False
     End Sub
 
     Private Sub overviewbtn_Click(sender As Object, e As EventArgs) Handles overviewbtn.Click
+        'SHOW AND HIDE PANELL
         demographicsinfo.Visible = False
         purokstats.Visible = False
         civilstatuspanel.Visible = False
         occupationalstatspanel.Visible = False
         overviewpanel.Visible = True
+
+        'SHOW ACTIVATION 
+        activedemographic.Visible = False
+        activepurok.Visible = False
+        activemaritalstatus.Visible = False
+        activeoccupational.Visible = False
+        activeoverview.Visible = True
+
     End Sub
 
     'demographics -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -329,6 +379,10 @@ Public Class demographics
         viewform.UpdateDataGridView("Student")
         viewform.ShowDialog()
     End Sub
+
+
+
+
 
     'overview----------------------------------------------------------------------------------------------------------------------------
     '

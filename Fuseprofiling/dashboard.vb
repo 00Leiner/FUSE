@@ -4,6 +4,7 @@ Imports System.Windows.Forms.DataVisualization.Charting
 Public Class dashboard
 
     Private Sub residents_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+
         'db connection
         Dim conn As OleDbConnection = DatabaseConnection.GetConnection()
 
@@ -39,21 +40,21 @@ Public Class dashboard
 
     End Sub
     Private Sub create_Click(sender As Object, e As EventArgs) Handles create.Click
+        Me.Hide()
         'navigate to registry
         registry.Show()
-        Me.Close()
     End Sub
 
     Private Sub residentsbtn_Click(sender As Object, e As EventArgs) Handles residentsbtn.Click
+        Me.Hide()
         'navigate to residents
         residents.Show()
-        Me.Hide()
     End Sub
 
     Private Sub demographicsbtn_Click(sender As Object, e As EventArgs) Handles demographicsbtn.Click
+        Me.Hide()
         'navigate to demographics
         demographics.Show()
-        Me.Hide()
     End Sub
 
     Private Sub Panel4_Click(sender As Object, e As EventArgs) Handles Panel4.Click
@@ -72,6 +73,17 @@ Public Class dashboard
         'show the list of All recidents
         viewform.UpdateDataGridView("All")
         viewform.ShowDialog()
+    End Sub
+    Private Sub Panel1_Click(sender As Object, e As EventArgs) Handles Panel1.Click
+        household.ShowDialog()
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Dim logout As DialogResult = MessageBox.Show("Are you sure you want to logout?", "logout", MessageBoxButtons.YesNo)
+        If logout = DialogResult.Yes Then
+            Me.Hide()
+            Form1.Show()
+        End If
     End Sub
 
 End Class

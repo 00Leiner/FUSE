@@ -31,11 +31,30 @@ Public Class UpdateForm
         householdbox.Text = _household
         purokbox.Text = _purok
         addressbox.Text = _address
-        birthdatepicker.Value = _birthdate
+        birthdatepicker.Text = _birthdate
         sexbox.Text = _sex
         occupationstatusbox.Text = _OCCUPATIONSTATUS
         civilstatusbox.Text = _civilstatus
         contactbox.Text = _contact
+    End Sub
+    Sub columnvisible(tof)
+
+        'to hide the column in datagridview
+
+        Dim visibleToF As Boolean = tof
+
+        householdmember.Columns(0).Visible = visibleToF
+        householdmember.Columns(1).Visible = visibleToF
+        householdmember.Columns(2).Visible = visibleToF
+        householdmember.Columns(3).Visible = visibleToF
+        householdmember.Columns(4).Visible = visibleToF
+        householdmember.Columns(5).Visible = visibleToF
+        householdmember.Columns(6).Visible = visibleToF
+        householdmember.Columns(7).Visible = visibleToF
+        householdmember.Columns(8).Visible = visibleToF
+        householdmember.Columns(9).Visible = visibleToF
+        householdmember.Columns(10).Visible = visibleToF
+        householdmember.Columns(11).Visible = visibleToF
     End Sub
     Public Sub New(id As Integer, surname As String, firstname As String, middlename As String, suffix As String, household As String, purok As String, address As String, birthdate As String, sex As String, OCCUPATIONSTATUS As String, civilstatus As String, contact As String)
         InitializeComponent()
@@ -92,6 +111,10 @@ Public Class UpdateForm
             MessageBox.Show("Please fill the Contact No.")
             Return
         End If
+        If Not contactbox.Text.StartsWith("09") Then
+            MessageBox.Show("Please fill the Contact No.")
+            Return
+        End If
 
         comm = New OleDbCommand
         comm.Connection = conn
@@ -100,18 +123,8 @@ Public Class UpdateForm
             comm.ExecuteNonQuery()
 
             'to hide the default column in datagridview
-            householdmember.Columns(0).Visible = False
-            householdmember.Columns(1).Visible = False
-            householdmember.Columns(2).Visible = False
-            householdmember.Columns(3).Visible = False
-            householdmember.Columns(4).Visible = False
-            householdmember.Columns(5).Visible = False
-            householdmember.Columns(6).Visible = False
-            householdmember.Columns(7).Visible = False
-            householdmember.Columns(8).Visible = False
-            householdmember.Columns(9).Visible = False
-            householdmember.Columns(10).Visible = False
-            householdmember.Columns(11).Visible = False
+            columnvisible(False)
+            'add one column to hide because in datagridview collection dont have an ID  column 
             householdmember.Columns(12).Visible = False
 
             Dim table As New DataTable()
@@ -127,26 +140,34 @@ Public Class UpdateForm
 
     End Sub
 
-    'back button
-    Private Sub back_Click(sender As Object, e As EventArgs) Handles back.Click
-        'back to dashboard
-        residents.Show()
-        Me.Hide()
-    End Sub
-
     'condition in imputing data
     Private Sub surnamebox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles surnamebox.KeyPress
-        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+        ' Check if the pressed key is a space or a letter or the backspace key
+        If e.KeyChar = " " OrElse Char.IsLetter(e.KeyChar) OrElse e.KeyChar = ChrW(Keys.Back) Then
+            ' Allow spaces, letters, and backspace
+            e.Handled = False
+        Else
+            ' Block other characters
             e.Handled = True
         End If
     End Sub
     Private Sub firstbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles firstbox.KeyPress
-        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+        ' Check if the pressed key is a space or a letter or the backspace key
+        If e.KeyChar = " " OrElse Char.IsLetter(e.KeyChar) OrElse e.KeyChar = ChrW(Keys.Back) Then
+            ' Allow spaces, letters, and backspace
+            e.Handled = False
+        Else
+            ' Block other characters
             e.Handled = True
         End If
     End Sub
     Private Sub middlebox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles middlebox.KeyPress
-        If Not Char.IsLetter(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+        ' Check if the pressed key is a space or a letter or the backspace key
+        If e.KeyChar = " " OrElse Char.IsLetter(e.KeyChar) OrElse e.KeyChar = ChrW(Keys.Back) Then
+            ' Allow spaces, letters, and backspace
+            e.Handled = False
+        Else
+            ' Block other characters
             e.Handled = True
         End If
     End Sub
@@ -158,13 +179,6 @@ Public Class UpdateForm
     Private Sub contactbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles contactbox.KeyPress
         If Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = ControlChars.Back Then
             e.Handled = True
-        End If
-    End Sub
-    Private Sub contactbox_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles contactbox.Validating
-        'contact number must contain 11 digits
-        If contactbox.Text.Length <> 11 Then
-            MessageBox.Show("Contact number must be 11 digits.")
-            e.Cancel = True
         End If
     End Sub
 
@@ -183,22 +197,16 @@ Public Class UpdateForm
             adapter.Fill(table)
             If table.Rows.Count > 0 Then
                 householdmember.DataSource = table
-                'to hide the default column in datagridview
-                householdmember.Columns(0).Visible = False
-                householdmember.Columns(1).Visible = False
-                householdmember.Columns(2).Visible = False
-                householdmember.Columns(3).Visible = False
-                householdmember.Columns(4).Visible = False
-                householdmember.Columns(5).Visible = False
-                householdmember.Columns(6).Visible = False
-                householdmember.Columns(7).Visible = False
-                householdmember.Columns(8).Visible = False
-                householdmember.Columns(9).Visible = False
-                householdmember.Columns(10).Visible = False
-                householdmember.Columns(11).Visible = False
+
+                'to hide the column in datagridview
+                columnvisible(False)
+                'add one column to hide because in datagridview collection dont have an ID  column 
                 householdmember.Columns(12).Visible = False
             Else
-                householdmember.DataSource = Nothing ' Clear the data source if no data found
+                householdmember.DataSource = Nothing ' Clear the datasource if no data found
+
+                'to show the column in datagridview
+                columnvisible(True)
             End If
         End Using
     End Sub
@@ -208,4 +216,40 @@ Public Class UpdateForm
         ' Set the textbox values using the received data from resident datagridview
         returndefault()
     End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        dashboard.Show()
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Dim logout As DialogResult = MessageBox.Show("Are you sure you want to logout?", "logout", MessageBoxButtons.YesNo)
+        If logout = DialogResult.Yes Then
+            Me.Hide()
+            Form1.Show()
+        End If
+    End Sub
+
+    Private Sub create_Click(sender As Object, e As EventArgs) Handles create.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        registry.Show()
+    End Sub
+
+    Private Sub residentsbtn_Click(sender As Object, e As EventArgs) Handles residentsbtn.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        residents.Show()
+    End Sub
+
+    Private Sub demographicsbtn_Click(sender As Object, e As EventArgs) Handles demographicsbtn.Click
+        'hide this form
+        Me.Hide()
+        'back to dashboard
+        demographics.Show()
+    End Sub
+
 End Class

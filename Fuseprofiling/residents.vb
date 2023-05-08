@@ -24,6 +24,9 @@ Public Class residents
     Dim contact As String
 
     Private Sub residents_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        'full row will be selected
+        personalinfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+
         'showing data in datagridview
         Dim table As New DataTable()
         adapter = New OleDbDataAdapter("SELECT * FROM infostb ORDER BY SURNAME ASC", conn)
@@ -37,7 +40,8 @@ Public Class residents
         personalinfo.ClearSelection()
     End Sub
 
-    Private Sub search_TextChanged(sender As Object, e As EventArgs) Handles search.TextChanged
+    Private Sub search_TextChanged(sender As Object, e As EventArgs) 
+
         'searchvalue variable 
         Dim searchValue As String = search.Text
         'selecting colums
@@ -50,35 +54,39 @@ Public Class residents
             'showing data in datagridview
             adapter.Fill(table)
             personalinfo.DataSource = table
+
         End Using
     End Sub
 
-    Private Sub back_Click(sender As Object, e As EventArgs) Handles back.Click
-        dashboard.Show()
-        Me.Hide()
-    End Sub
+    Private Sub personalinfo_SelectionChanged(sender As Object, e As EventArgs) 
+        If personalinfo.SelectedRows.Count > 0 Then
+            ' Retrieve the data from the selected row
+            Dim selectedRow As DataGridViewRow = personalinfo.SelectedRows(0)
+            ID = Convert.ToInt32(selectedRow.Cells(0).Value)
+            surname = selectedRow.Cells(1).Value.ToString()
+            firstname = selectedRow.Cells(2).Value.ToString()
+            middlename = selectedRow.Cells(3).Value.ToString()
+            suffix = selectedRow.Cells(4).Value.ToString()
+            address = selectedRow.Cells(5).Value.ToString()
+            sex = selectedRow.Cells(6).Value.ToString()
+            civilstatus = selectedRow.Cells(7).Value.ToString()
+            household = selectedRow.Cells(8).Value.ToString()
+            purok = selectedRow.Cells(9).Value.ToString()
+            birthdate = selectedRow.Cells(10).Value.ToString()
+            contact = selectedRow.Cells(11).Value.ToString()
+            OCCUPATIONSTATUS = selectedRow.Cells(12).Value.ToString()
 
-    Private Sub personalinfo_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles personalinfo.CellClick
-        'when row is clicked
-        ID = Convert.ToInt32(personalinfo.Rows(e.RowIndex).Cells(0).Value)
-        surname = personalinfo.Rows(e.RowIndex).Cells(1).Value.ToString
-        firstname = personalinfo.Rows(e.RowIndex).Cells(2).Value.ToString
-        middlename = personalinfo.Rows(e.RowIndex).Cells(3).Value.ToString
-        suffix = personalinfo.Rows(e.RowIndex).Cells(4).Value.ToString
-        address = personalinfo.Rows(e.RowIndex).Cells(5).Value.ToString
-        sex = personalinfo.Rows(e.RowIndex).Cells(6).Value.ToString
-        civilstatus = personalinfo.Rows(e.RowIndex).Cells(7).Value.ToString
-        household = personalinfo.Rows(e.RowIndex).Cells(8).Value.ToString
-        purok = personalinfo.Rows(e.RowIndex).Cells(9).Value.ToString
-        birthdate = personalinfo.Rows(e.RowIndex).Cells(10).Value.ToString
-        contact = personalinfo.Rows(e.RowIndex).Cells(11).Value.ToString
-        OCCUPATIONSTATUS = personalinfo.Rows(e.RowIndex).Cells(12).Value.ToString
+        End If
     End Sub
 
     Private Sub deletebtn_Click(sender As Object, e As EventArgs) Handles deletebtn.Click
         ' Check if any cell is selected
         If personalinfo.SelectedCells.Count = 0 Then
             MessageBox.Show("Please select a cell to Delete.")
+
+            'clear the search bar 
+            search.Text = String.Empty
+
             Return
         Else
             ' Ask user to confirm deletion
@@ -101,27 +109,79 @@ Public Class residents
                 Dim table As New DataTable()
                 adapter.Fill(table)
                 personalinfo.DataSource = table
+
             End If
+
+            'clear the search bar 
+            search.Text = String.Empty
+
         End If
     End Sub
 
     Private Sub updatebtn_Click(sender As Object, e As EventArgs) Handles updatebtn.Click
+
         ' Check if any cell is selected
         If personalinfo.SelectedCells.Count = 0 Then
             MessageBox.Show("Please select a cell to update.")
+
+            'clear the search bar 
+            search.Text = String.Empty
             Return
 
         End If
         ' send the data clicked from the datagridview and send it to updateform
         Dim updateForm As New UpdateForm(ID, surname, firstname, middlename, suffix, household, purok, address, birthdate, sex, OCCUPATIONSTATUS, civilstatus, contact)
-        updateForm.Show()
+
+        'hide this form
         Me.Hide()
 
+        'clear the search bar 
+        search.Text = String.Empty
+
+        'navidate to update form 
+        updateForm.Show()
     End Sub
 
     Private Sub viewall_Click(sender As Object, e As EventArgs) Handles viewall.Click
+        'clear the search bar 
+        search.Text = String.Empty
+        'navigate to viewform
         viewform.UpdateDataGridView("All")
         viewform.ShowDialog()
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'hide this form
+        Me.Hide()
+        'clear the search bar 
+        search.Text = String.Empty
+        'navigate to dashboard
+        dashboard.Show()
+    End Sub
+
+    Private Sub demographicsbtn_Click(sender As Object, e As EventArgs) Handles demographicsbtn.Click
+        'hide this form
+        Me.Hide()
+        'clear the search bar 
+        search.Text = String.Empty
+        'navigate to dashboard
+        demographics.Show()
+    End Sub
+
+    Private Sub create_Click(sender As Object, e As EventArgs) Handles create.Click
+        'hide this form
+        Me.Hide()
+        'clear the search bar 
+        search.Text = String.Empty
+        'navigate to dashboard
+        registry.Show()
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Dim logout As DialogResult = MessageBox.Show("Are you sure you want to logout?", "logout", MessageBoxButtons.YesNo)
+        If logout = DialogResult.Yes Then
+            Me.Hide()
+            Form1.Show()
+        End If
+    End Sub
 End Class

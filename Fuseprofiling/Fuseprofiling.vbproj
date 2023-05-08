@@ -94,6 +94,12 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="household.Designer.vb">
+      <DependentUpon>household.vb</DependentUpon>
+    </Compile>
+    <Compile Include="household.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -133,6 +139,12 @@
     <Compile Include="viewform.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="viewhouseholdmember.Designer.vb">
+      <DependentUpon>viewhouseholdmember.vb</DependentUpon>
+    </Compile>
+    <Compile Include="viewhouseholdmember.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="dashboard.resx">
@@ -143,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="household.resx">
+      <DependentUpon>household.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -161,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="viewform.resx">
       <DependentUpon>viewform.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viewhouseholdmember.resx">
+      <DependentUpon>viewhouseholdmember.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
