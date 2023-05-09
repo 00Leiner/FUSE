@@ -28,6 +28,8 @@ Public Class registry
         householdmember.Columns(11).Visible = visibleToF
     End Sub
     Private Sub residents_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        'full row will be selected
+        householdmember.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         'clear the inputed text 
         clearText()
 
@@ -189,7 +191,7 @@ Public Class registry
             e.Handled = True
         End If
     End Sub
-    Private Sub householdbox_KeyPress(sender As Object, e As KeyPressEventArgs)
+    Private Sub householdbox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles householdbox.KeyPress
         If Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = ControlChars.Back Then
             e.Handled = True
         End If

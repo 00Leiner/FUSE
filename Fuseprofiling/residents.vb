@@ -40,7 +40,7 @@ Public Class residents
         personalinfo.ClearSelection()
     End Sub
 
-    Private Sub search_TextChanged(sender As Object, e As EventArgs) 
+    Private Sub search_TextChanged(sender As Object, e As EventArgs) Handles search.TextChanged
 
         'searchvalue variable 
         Dim searchValue As String = search.Text
@@ -58,7 +58,7 @@ Public Class residents
         End Using
     End Sub
 
-    Private Sub personalinfo_SelectionChanged(sender As Object, e As EventArgs) 
+    Private Sub personalinfo_SelectionChanged(sender As Object, e As EventArgs) Handles personalinfo.SelectionChanged
         If personalinfo.SelectedRows.Count > 0 Then
             ' Retrieve the data from the selected row
             Dim selectedRow As DataGridViewRow = personalinfo.SelectedRows(0)
